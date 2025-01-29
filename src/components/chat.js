@@ -9,6 +9,7 @@ const Chat = () => {
     useEffect(() => {
         // Conectando ao WebSocket do backend
         const ws = new WebSocket("wss://chatgamer-backend.onrender.com/ws");
+        console.log('ws: ');
 
         ws.onopen = () => {
             console.log("✅ Conectado ao servidor WebSocket");
