@@ -8,7 +8,7 @@ const Chat = () => {
 
     useEffect(() => {
         // Conectando ao WebSocket do backend
-        const ws = new WebSocket("ws://127.0.0.1:8000/ws");
+        const ws = new WebSocket("wss://chatgamer-backend.onrender.com/ws");
 
         ws.onopen = () => {
             console.log("✅ Conectado ao servidor WebSocket");
@@ -40,6 +40,12 @@ const Chat = () => {
         setInput("");
     };
 
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleSend();
+        }
+    };
+
     return (
         <div className="chat-container">
             <Header />
@@ -61,6 +67,7 @@ const Chat = () => {
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={handleKeyDown}
                         placeholder="Digite sua mensagem..."
                         className="input-field"
                     />
